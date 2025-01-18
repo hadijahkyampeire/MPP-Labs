@@ -5,17 +5,17 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
 
-//        // Hourly Employee
-//        Employee hourly = new Hourly("E001", 20.0, 40);
-//        PayCheck hourlyPaycheck = hourly.calcCompensation(1, 2025);
-//        System.out.println("Hourly Employee:");
-//        hourlyPaycheck.print();
-//
-//        // Salaried Employee
-//        Employee salaried = new Salaried("E002", 3000.0);
-//        PayCheck salariedPaycheck= salaried.calcCompensation(1, 2025);
-//        System.out.println("\nSalaried Employee:");
-//        salariedPaycheck.print();
+        // Hourly Employee
+        Employee hourly = new Hourly("E001", 20.0, 40);
+        PayCheck hourlyPaycheck = hourly.calcCompensation(1, 2025);
+        System.out.println("Hourly Employee:");
+        hourlyPaycheck.print();
+
+        // Salaried Employee
+        Employee salaried = new Salaried("E002", 3000.0);
+        PayCheck salariedPaycheck= salaried.calcCompensation(1, 2025);
+        System.out.println("\nSalaried Employee:");
+        salariedPaycheck.print();
 
         // Commissioned Employee
         Order order1 = new Order("O001", LocalDate.of(2025, 1, 5), 500.0);
