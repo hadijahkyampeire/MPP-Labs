@@ -9,7 +9,7 @@ public abstract class Employee {
 
     public void print() {};
 
-    public PayCheck calcCompensation(int month,int year) {
+    public final PayCheck calcCompensation(int month,int year) {
         System.out.println("Employee ID: " + empId);
         System.out.println("Month: " + month);
         System.out.println("Year: " + year + "\n");
