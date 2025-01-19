@@ -33,8 +33,14 @@ public class CDRuleSet implements RuleSet {
 
 	private void isPrice2DecimalFloatingRule() throws RuleException {
 		String price = cdWindow.getPriceValue().trim();
-		if(!price.matches("\\d+\\.\\d{2}")) {
-			throw new RuleException("Price must be a floating point number with two decimal places.");
+		try {
+			double parsedPrice = Double.parseDouble(price);
+			// Multiply by 100 and check if it's an integer
+			if ((parsedPrice * 100) % 1 != 0) {
+				throw new RuleException("Price must be a floating point number with two decimal places.");
+			}
+		} catch (RuleException e) {
+			throw new RuleException(e.getMessage());
 		}
 	}
 

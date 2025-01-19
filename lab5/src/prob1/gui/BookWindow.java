@@ -119,9 +119,16 @@ public class BookWindow extends JFrame {
 	}
 	class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent evt){
+			String isbn = isbnField.getText();
+			String title = titleField.getText();
+			String price = priceField.getText();
 			try {
 				RuleSet rules = RuleSetFactory.getRuleSet(BookWindow.this);
 				rules.applyRules(BookWindow.this);
+				String n = System.getProperty("line.separator");
+				String output = isbn + n + title + n + price;
+				System.out.println(output);
+				clearFields();
 				JOptionPane.showMessageDialog(BookWindow.this, "Book information is valid!");
 			} catch (RuleException e) {
 				JOptionPane.showMessageDialog(BookWindow.this, e.getMessage(), "Validation Error", JOptionPane.ERROR_MESSAGE);

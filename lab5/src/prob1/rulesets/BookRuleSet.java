@@ -24,8 +24,9 @@ public class BookRuleSet implements RuleSet {
 		bookWindow = (BookWindow) ob;
 		nonemptyRule();
 		isbnNumericRule();
-		isbnBetween10And13Rule();
-		isbnFirstThreeRule();
+		isbn10Or13DigitsRule();
+		isbn10DigitsFirstNumberRule();
+		isbn13DigitsFirstThreeRule();
 		isPrice2DecimalFloatingRule();
 		isPriceGreaterThan();
 	}
@@ -49,14 +50,22 @@ public class BookRuleSet implements RuleSet {
 		}
 	}
 
-	private void isbnBetween10And13Rule() throws RuleException {
+
+	private void isbn10Or13DigitsRule() throws RuleException {
 		String isbn = bookWindow.getIsbnValue().trim();
 		if(!isbn.isEmpty() && (isbn.length() != 10 && isbn.length() != 13)) {
 			throw new RuleException("ISBN number must be numeric with 10 or 13 digits");
 		}
 	}
 
-	private void isbnFirstThreeRule() throws RuleException {
+	private void isbn10DigitsFirstNumberRule() throws RuleException {
+		String isbn = bookWindow.getIsbnValue().trim();
+		if(isbn.length() == 10 && !(isbn.startsWith("0") || isbn.startsWith("1"))) {
+			throw new RuleException("ISBN of 10 digits should start with 0 or 1");
+		}
+	}
+
+	private void isbn13DigitsFirstThreeRule() throws RuleException {
 		String isbn = bookWindow.getIsbnValue().trim();
 		if(isbn.length() == 13 && !(isbn.startsWith("978") || isbn.startsWith("979"))) {
 			throw new RuleException("If ISBN has length 13, the first three digits must be 978 or 979.");
@@ -65,9 +74,16 @@ public class BookRuleSet implements RuleSet {
 
 	private void isPrice2DecimalFloatingRule() throws RuleException {
 		String bookPrice = bookWindow.getPriceValue().trim();
-		if(!bookPrice.matches("\\d+\\.\\d{2}")) {
-			throw new RuleException("Price must be a floating point number with two decimal places.");
+		try {
+			double parsedPrice = Double.parseDouble(bookPrice);
+			// Multiply by 100 and check if it's an integer
+			if ((parsedPrice * 100) % 1 != 0) {
+				throw new RuleException("Price must be a floating point number with two decimal places.");
+			}
+		} catch (RuleException e) {
+			throw new RuleException(e.getMessage());
 		}
+
 	}
 
 	private void isPriceGreaterThan() throws RuleException{

@@ -118,10 +118,17 @@ public class CDWindow extends JFrame {
 	}
 	class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent evt){
+			String artist = artistField.getText();
+			String title = titleField.getText();
+			String price = priceField.getText();
 			try {
 				RuleSet rules = RuleSetFactory.getRuleSet(CDWindow.this);
 				rules.applyRules(CDWindow.this);
 				JOptionPane.showMessageDialog(CDWindow.this, "CD input validated");
+				String n = System.getProperty("line.separator");
+				String output = artist + n + title + n + price;
+				System.out.println(output);
+				clearFields();
 			} catch (RuleException e) {
 				JOptionPane.showMessageDialog(CDWindow.this, e.getMessage(), "Validation Error", JOptionPane.ERROR_MESSAGE);
 			}
