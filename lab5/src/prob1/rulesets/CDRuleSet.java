@@ -12,11 +12,36 @@ import prob1.gui.CDWindow;
  */
 
 public class CDRuleSet implements RuleSet {
+	private CDWindow cdWindow;
 
 	@Override
 	public void applyRules(Component ob) throws RuleException {
-		// TODO Auto-generated method stub
-		
+		cdWindow = (CDWindow) ob;
+		nonemptyRule();
+		isPrice2DecimalFloatingRule();
+		isPriceGreaterThan();
 	}
-	
+
+	private void nonemptyRule() throws RuleException {
+		String artist = cdWindow.getArtistValue().trim();
+		String title = cdWindow.getTitleValue().trim();
+		String price = cdWindow.getPriceValue().trim();
+		if(artist.isEmpty() || title.isEmpty() || price.isEmpty()) {
+			throw new RuleException("All CD fields must not be empty");
+		}
+	}
+
+	private void isPrice2DecimalFloatingRule() throws RuleException {
+		String price = cdWindow.getPriceValue().trim();
+		if(!price.matches("\\d+\\.\\d{2}")) {
+			throw new RuleException("Price must be a floating point number with two decimal places.");
+		}
+	}
+
+	private void isPriceGreaterThan() throws RuleException{
+		String price = cdWindow.getPriceValue().trim();
+		if(Double.parseDouble(price) <= 0.49) {
+			throw new RuleException("Price must be greater than 0.49");
+		}
+	}
 }

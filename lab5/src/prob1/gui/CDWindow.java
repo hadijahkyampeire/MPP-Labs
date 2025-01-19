@@ -118,7 +118,13 @@ public class CDWindow extends JFrame {
 	}
 	class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent evt){
-			JOptionPane.showMessageDialog(CDWindow.this, "Still need to check CD rules!");
+			try {
+				RuleSet rules = RuleSetFactory.getRuleSet(CDWindow.this);
+				rules.applyRules(CDWindow.this);
+				JOptionPane.showMessageDialog(CDWindow.this, "CD input validated");
+			} catch (RuleException e) {
+				JOptionPane.showMessageDialog(CDWindow.this, e.getMessage(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 	class BackListener implements ActionListener {

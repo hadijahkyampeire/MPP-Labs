@@ -119,7 +119,14 @@ public class BookWindow extends JFrame {
 	}
 	class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent evt){
-			JOptionPane.showMessageDialog(BookWindow.this, "Still need to check book rules!");
+			try {
+				RuleSet rules = RuleSetFactory.getRuleSet(BookWindow.this);
+				rules.applyRules(BookWindow.this);
+				JOptionPane.showMessageDialog(BookWindow.this, "Book information is valid!");
+			} catch (RuleException e) {
+				JOptionPane.showMessageDialog(BookWindow.this, e.getMessage(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+			}
+
 		}
 	}
 	class BackListener implements ActionListener {
