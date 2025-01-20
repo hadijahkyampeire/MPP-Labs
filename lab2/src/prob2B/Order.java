@@ -15,12 +15,20 @@ public class Order {
         return orderLines;
     }
 
-    public Order(String orderNumber) {
-        this.orderNumber = orderNumber;
-        this.orderLines = new ArrayList<>();
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderNumber='" + orderNumber + '\'' +
+                '}';
     }
 
-    public void addOrderLine(OrderLine orderLine) {
-        orderLines.add(orderLine);
+    public Order(String orderNumber, int lineNumber, double price) {
+        this.orderNumber = orderNumber;
+        this.orderLines = new ArrayList<>();
+        addOrderLine(lineNumber, price);
+    }
+
+    public void addOrderLine(int lineNumber, double price) {
+        orderLines.add(new OrderLine(lineNumber, price, this));
     }
 }
