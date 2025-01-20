@@ -13,6 +13,10 @@ public class Cylinder {
         this.radius = radius;
     }
 
+    public double getRadius() {
+        return radius;
+    }
+
     public double getHeight() {
         return height;
     }

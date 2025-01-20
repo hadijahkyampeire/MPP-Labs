@@ -1,6 +1,8 @@
 package code.prob4;
 
 public class Admin {
+
+	// Non OO implementation
     	public static double computeTotalRent(Object[] properties) {
 		double totalRent = 0;
 
