@@ -1,17 +1,16 @@
 package channelServiceSubscription;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Vector;
 
 public class Customer {
     String name;
-    String id;
-    List<Service> services;
+    int id;
+    Vector<Service> services;
 
-    public Customer(String name, String id) {
+    public Customer(String name, int id) {
         this.name = name;
         this.id = id;
-        this.services = new ArrayList<>();
+        this.services = new Vector<>();
     }
 
     public void addService(Service service) {
