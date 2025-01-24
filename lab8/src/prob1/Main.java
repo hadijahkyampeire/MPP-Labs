@@ -7,17 +7,14 @@ public class Main {
         // PART B
         // method reference: Supplier<Double> mathRandom = Math::random;
         // lambda expression
-        Supplier<Double> mathRandom = () -> Math.random();
-        System.out.println(mathRandom.get());
+        Supplier<Double> mathRandomLambda = () -> Math.random();
+        System.out.println(mathRandomLambda.get());
 
 
-        // part A
+        // part A Testing
         String s = "qwerty";
-        String t = "qwerty";
-        s.compareToIgnoreCase(t);
-        s.compareTo(t);
-
-
-
+        String t = "Qwerty";
+        System.out.println("Ignore case: " + s.compareToIgnoreCase(t));
+        System.out.println("Normal Compare: " + s.compareTo(t));
     }
 }

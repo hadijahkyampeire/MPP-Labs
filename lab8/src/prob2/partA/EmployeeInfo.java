@@ -26,7 +26,7 @@ public class EmployeeInfo {
 		System.out.println(joe1.equals(joe2));
 
 		EmployeeNameComparator nameComp = new EmployeeNameComparator();
-		System.out.println(nameComp.compare(joe1, joe2));
+		System.out.println(nameComp.compare(joe1, joe2)); // Not ) because the two employee have different salaries
 		
 	}
 }
