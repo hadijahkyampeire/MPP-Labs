@@ -1,4 +1,4 @@
-## PART D
+## PART E
 - Diamond problem and how Java 8 now supports multiple inheritance;
 
 a. When the type D is a class and A, B, C are interfaces.
