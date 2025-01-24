@@ -26,9 +26,11 @@ public class WordCount {
         WordCount wordCount = new WordCount();
         List<String> words = new ArrayList<>();
         words.add("cat");
+        words.add("cart");
         words.add("cats");
         words.add("dog");
         words.add("dogs");
-        System.out.println(wordCount.countWords(words, 'c', 's', 3));
+        System.out.println(wordCount.countWords(words, 'c', 's', 3)); // 1
+        System.out.println(wordCount.countWords(words, 'c', 'd', 4)); // 2
     }
 }
