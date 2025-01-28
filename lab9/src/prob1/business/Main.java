@@ -28,6 +28,7 @@ public class Main {
                 .collect(Collectors.toList());
 		
 	}
+	// SKIPPED SINCE WE DON'T HAVE THE CHECKOUT DATE
 	//Returns a list of all ids of  LibraryMembers that have an overdue book
 	public static List<String> allHavingOverdueBook() {
 		DataAccess da = new DataAccessFacade();
