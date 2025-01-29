@@ -24,7 +24,6 @@ public class Main {
 		System.out.println(list.stream()
 				.sorted(Comparator.comparing( (Integer i) -> Math.abs(i))
 				.thenComparing(Comparator.comparing(n -> n))).collect(Collectors.toList()));
-		
 	}
 	
 	//Orders words by first reversing each and comparing 
@@ -36,7 +35,9 @@ public class Main {
 	//Using this ordering, this method sorts the list as part of 
 	//a stream pipeline, and prints to the console
 	public static void ordering2(List<String> words) {
-		System.out.println(/* implement */);
+		System.out.println(words.stream()
+				.sorted(Comparator.comparing((String s) -> new StringBuilder(s).reverse().toString()))
+				.collect(Collectors.toList()));
 				
 	}
 
